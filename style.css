@@ -1,0 +1,19 @@
+body{
+    background-color: black;
+}
+.main{
+    margin-top: 230px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.centerize{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-label{
+    color: white;
+}
