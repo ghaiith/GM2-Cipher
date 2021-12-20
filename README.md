@@ -1,2 +1,2 @@
 # GM3-Cipher
-Customize Caeser Cipher
+Customize for Caeser Cipher
