@@ -1,3 +1,4 @@
+// this function to Excute the Cipher
 function main(){
     input=document.getElementById("in").value;
     key=parseInt(document.getElementById("key").value)
@@ -16,9 +17,15 @@ function main(){
     }
 
 }
+
+// Check if char is letter (letter return : True /else return : False)
 function isLetter(c) {
     return c.toLowerCase() != c.toUpperCase();
-  }
+}
+
+
+// Caeser Cipher work on Letter(Upper&LowerCase)
+// Encryption Function
 function C_Encrypt(key, text) {
       alpha="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
       console.log(alpha.length)
@@ -28,7 +35,7 @@ function C_Encrypt(key, text) {
           if (isLetter(text.charAt(i))){
               lindex=((key + alpha.indexOf(text[i])) % 52);
               out+=alpha[lindex]
-          }
+            }
           else{
               out+=text[i]
           }
@@ -36,6 +43,7 @@ function C_Encrypt(key, text) {
       return out;
   
 }
+// Decription Function
 function C_Decrypt(key,text){
     alpha="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     out = "";
@@ -55,6 +63,7 @@ function C_Decrypt(key,text){
     return out;
 }
 
+// Function To Save File Using Third Party Library (Filesaver.js)
 function saveDynamicDataToFile() {
 
     var userInput = document.getElementById("out").value;
@@ -63,9 +72,10 @@ function saveDynamicDataToFile() {
     saveAs(blob, "dynamic.txt");
 }
 
+// This line For Upload Files 
 document.getElementById('inputfile')
 .addEventListener('change', function() {
-  
+    
 var fr=new FileReader();
 fr.onload=function(){
     document.getElementById('in')

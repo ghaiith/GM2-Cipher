@@ -16,6 +16,7 @@
 
         <div class="container">
             <div class="row">
+                <!-- ########## -- This Block For Input Data -- ########## -->
                 <div class="col-md-4 centerize">
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Input Text</label>
@@ -26,8 +27,9 @@
                         <input accept="text/plain" type="file" name="inputfile" id="inputfile" class="hidden">
                         <label for="inputfile" class="btn btn-outline-info btn-lg mb-3"><i class="fas fa-upload fa-xs"></i>  Upload</label>
                       </div>
-                      
+                    <!-- ########## --------------------------- ########## -->
                 </div>
+                <!-- ########## -- This Block For Key & Generation Data -- ##########  -->
                 <div class="col-md-4 centerize">
                     <div style="width: 100%;" class="mb-3 mt-5">
                         <label for="inputPassword2" class="visually-hidden">Enter Key</label>
@@ -39,6 +41,7 @@
                       </select>
                     <button onclick="main()" type="button" class="btn btn-outline-light btn-lg mb-3">Generation</button>
                 </div>
+                <!-- ########## -- This Block For Output Data -- ##########  -->
                 <div class="col-md-4 centerize">
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Output Text</label>
@@ -48,6 +51,7 @@
                       <div>
                         <button onclick="saveDynamicDataToFile()" type="button" class="btn btn-outline-info btn-lg mb-3"> <i class="fas fa-download fa-xs"></i> Download</button>
                       </div>
+                  <!-- ########## ---------------------------------- ########## -->
                 </div>
             </div>
         </div>
