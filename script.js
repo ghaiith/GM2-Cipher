@@ -68,7 +68,7 @@ function saveDynamicDataToFile() {
     var userInput = document.getElementById("out").value;
     
     var blob = new Blob([userInput], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, "dynamic.txt");
+    saveAs(blob, "GM3 Cipher.txt");
 }
 
 // This line For Upload Files 
