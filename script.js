@@ -3,14 +3,13 @@ function main(){
     input=document.getElementById("in").value;
     key=parseInt(document.getElementById("key").value)
     type=document.getElementById("Gtype").value;
-    console.log(typeof(key))
-    if (type == 1 && key != NAN){
+    if (type == 1 && key){
         console.log(key)
         CT = C_Encrypt(key,input);
         CT = C_Encrypt(key,CT);
         document.getElementById("out").innerHTML=CT;
     }
-    else if(type == 2 && key != NAN){
+    else if(type == 2 && key){
         PT = C_Decrypt(key,input)
         PT = C_Decrypt(key,PT)
         document.getElementById("out").innerHTML=PT;
@@ -75,7 +74,7 @@ function saveDynamicDataToFile() {
 // This line For Upload Files 
 document.getElementById('inputfile')
 .addEventListener('change', function() {
-    
+
 var fr=new FileReader();
 fr.onload=function(){
     document.getElementById('in')
