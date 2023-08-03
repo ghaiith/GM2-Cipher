@@ -1,85 +1,97 @@
-// this function to Excute the Cipher
-function main(){
-    input=document.getElementById("in").value;
-    key=parseInt(document.getElementById("key").value)
-    type=document.getElementById("Gtype").value;
-    if (type == 1 && key){
-        console.log(key)
-        CT = C_Encrypt(key,input);
-        CT = C_Encrypt(key,CT);
-        document.getElementById("out").innerHTML=CT;
-    }
-    else if(type == 2 && key){
-        PT = C_Decrypt(key,input)
-        PT = C_Decrypt(key,PT)
-        document.getElementById("out").innerHTML=PT;
+// This function executes the Cipher algorithm based on user input
+function main() {
+    // Get the input text and key from the user interface
+    const input = document.getElementById("in").value;
+    const key = parseInt(document.getElementById("key").value);
+    const type = document.getElementById("Gtype").value;
+    let output = "";
+
+    // Helper function to check if a character is a letter
+    function isLetter(c) {
+        return c.toLowerCase() !== c.toUpperCase();
     }
 
-}
-
-// Check if char is letter (letter return : True /else return : False)
-function isLetter(c) {
-    return c.toLowerCase() != c.toUpperCase();
-}
-
-
-// Caeser Cipher work on Letter(Upper&LowerCase)
-// Encryption Function
-function C_Encrypt(key, text) {
-      alpha="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      console.log(alpha.length)
-      out = "";
-      t_len=text.length
-      for (i=0 ; i < t_len ; i++){
-          if (isLetter(text.charAt(i))){
-              lindex=((key + alpha.indexOf(text[i])) % 52);
-              out+=alpha[lindex]
+    // Cipher Encryption Function
+    function C_Encrypt(key, text) {
+        // Define the alphabet as an array of characters for better performance
+        const alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        let out = "";
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            if (isLetter(char)) {
+                // Find the index of the character in the alphabet
+                const charIndex = alpha.indexOf(char);
+                // Calculate the encrypted index using the key
+                const encryptedIndex = (charIndex + key) % 52;
+                // Append the encrypted character to the output
+                out += alpha[encryptedIndex];
+            } else {
+                // Non-letter characters remain unchanged
+                out += char;
             }
-          else{
-              out+=text[i]
-          }
-      }
-      return out;
-  
-}
-// Decription Function
-function C_Decrypt(key,text){
-    alpha="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    out = "";
-    t_len=text.length
-    for (i=0 ; i < t_len ; i++){
-        if (isLetter(text.charAt(i))){
-            lindex=((alpha.indexOf(text[i]) - key) % 52);
-            if(lindex<0){
-                lindex+=52
-            }
-            out+=alpha[lindex]
         }
-        else{
-            out+=text[i]
-        }
+        return out;
     }
-    return out;
+
+    // Cipher Decryption Function
+    function C_Decrypt(key, text) {
+        // Define the alphabet as an array of characters for better performance
+        const alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        let out = "";
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            if (isLetter(char)) {
+                // Find the index of the character in the alphabet
+                const charIndex = alpha.indexOf(char);
+                // Calculate the decrypted index using the key
+                let decryptedIndex = (charIndex - key) % 52;
+                // Handle negative indices by shifting back to the end of the alphabet
+                if (decryptedIndex < 0) {
+                    decryptedIndex += 52;
+                }
+                // Append the decrypted character to the output
+                out += alpha[decryptedIndex];
+            } else {
+                // Non-letter characters remain unchanged
+                out += char;
+            }
+        }
+        return out;
+    }
+
+    // Check the type of action selected (Encryption or Decryption) and perform the appropriate operation
+    if (type == 1) {
+        // Encrypt the input text twice with the same key for additional security
+        output = C_Encrypt(key, input);
+        output = C_Encrypt(key, output);
+    } else if (type == 2) {
+        // Decrypt the input text twice with the same key to reverse the encryption
+        output = C_Decrypt(key, input);
+        output = C_Decrypt(key, output);
+    }
+
+    // Update the output text in the user interface
+    document.getElementById("out").innerHTML = output;
 }
 
 // Function To Save File Using Third Party Library (Filesaver.js)
 function saveDynamicDataToFile() {
-
-    var userInput = document.getElementById("out").value;
-    
-    var blob = new Blob([userInput], { type: "text/plain;charset=utf-8" });
+    // Get the encrypted/decrypted output text
+    const userInput = document.getElementById("out").value;
+    // Create a Blob from the output text with the appropriate MIME type
+    const blob = new Blob([userInput], { type: "text/plain;charset=utf-8" });
+    // Save the Blob as a .txt file using the saveAs function from the FileSaver.js library
     saveAs(blob, "GM3 Cipher.txt");
 }
 
-// This line For Upload Files 
-document.getElementById('inputfile')
-.addEventListener('change', function() {
-
-var fr=new FileReader();
-fr.onload=function(){
-    document.getElementById('in')
-            .textContent=fr.result;
-}
-  
-fr.readAsText(this.files[0]);
-})
+// This function handles file uploads and updates the input text with the file content
+document.getElementById('inputfile').addEventListener('change', function() {
+    // Create a FileReader to read the uploaded file
+    const fr = new FileReader();
+    // When the file is loaded, update the input text with its content
+    fr.onload = function() {
+        document.getElementById('in').textContent = fr.result;
+    };
+    // Read the uploaded file as text
+    fr.readAsText(this.files[0]);
+});
