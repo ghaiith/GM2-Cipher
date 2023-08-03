@@ -81,7 +81,7 @@ function saveDynamicDataToFile() {
     // Create a Blob from the output text with the appropriate MIME type
     const blob = new Blob([userInput], { type: "text/plain;charset=utf-8" });
     // Save the Blob as a .txt file using the saveAs function from the FileSaver.js library
-    saveAs(blob, "GM3 Cipher.txt");
+    saveAs(blob, "GM2 Cipher.txt");
 }
 
 // This function handles file uploads and updates the input text with the file content
