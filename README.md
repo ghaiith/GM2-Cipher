@@ -9,13 +9,10 @@ GM2 Cipher is a simple web application that allows you to encrypt and decrypt te
 - Upload text files to encrypt or decrypt
 - Download encrypted or decrypted text as a .txt file
 
-## Demo
-
-You can try out the GM2 Cipher web application by visiting the live demo: [GM2 Cipher - Live Demo](https://ghaiith.github.io/GM2-Cipher/)
 
 ## How to Use
 
-1. Open the [GM2 Cipher - Live Demo](https://ghaiith.github.io/GM2-Cipher/) in your web browser.
+1. Open the GM2 Cipher in your web browser.
 2. Enter the text you want to encrypt or decrypt in the "Input Text" area.
 3. Enter a numeric key in the "Enter Key" input field.
 4. Choose the appropriate action (Encryption or Decryption) from the dropdown menu.
